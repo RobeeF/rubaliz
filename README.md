@@ -3,7 +3,7 @@
 RUBALIZ stands for RUpture-Based detection method for the Active mesopeLagIc Zone.
 It determines the active mesopelagic zone boundaries from CTD casts, using five variables:
 - Fluorescence
-- $O_2$
+- 0<sub>2</sub>
 - Potential temperature
 - Salinity
 - Density
