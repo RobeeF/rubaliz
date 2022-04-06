@@ -40,14 +40,15 @@ info_dict = {'cruise_name': 'DY032',
  'salinity_col': 'PSAL',             
  'files_format': '.cnv',
  'sep': None,
- 'root_folder': '../data/'}
+ 'data_folder': '<your_path_to_data>'}
 ```
 
 The cruise and station names are optional.
 The maximum depth ranges to look for the upper bound and lower boundaries of the active mesopelagic zone, ub_range and lb_range, are set to [280, 320] and [1000, 1300] by default, respectively.
 The pres_col is the name of the column containing the pressure data in the CTD cast.
 Similarly, the fluo_col, oxygen_col, temp_col, density_col and salinity_col stand for the column names of the fluorescence, oxygen, potential temperature, density and salinity data, respectively.
-RUBALIZ can handle '.cnv', '.txt' and '.csv' files. For '.csv' and '.txt' files a separator (sep) have to be set.
+RUBALIZ can handle '.cnv', '.txt' and '.csv' files. For '.csv' and '.txt' files a separator (sep) has to be set.
+The data_folder contains all the CTD casts for a given (cruise, station). An example of such a cast is given in the data folder.
 
 The model can be run in the following way:
 ```python

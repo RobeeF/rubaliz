@@ -36,7 +36,7 @@ class rubaliz:
         legal_fields = ['cruise_name', 'station_name', 'fluo_col', 'pres_col',\
                             'ub_range', 'lb_range', 'oxygen_col', 'temp_col',\
                             'density_col', 'salinity_col', 'files_format', 'sep',\
-                            'header', 'root_folder']
+                            'header', 'data_folder']
             
         for key in legal_fields:
             if not(key in info_dict.keys()):
@@ -71,7 +71,7 @@ class rubaliz:
             
         self.sep = info_dict['sep']
         self.files_format = info_dict['files_format']
-        self.root_folder = info_dict['root_folder']
+        self.data_folder = info_dict['data_folder']
               
     
     def format_data(self, depth_boundaries, stacked_signals = True, max_depth = None):
@@ -106,7 +106,7 @@ class rubaliz:
         # Fetch the information
         #======================================
         
-        folder = self.root_folder
+        folder = self.data_folder
         seq_start = depth_boundaries[0]
         seq_end = depth_boundaries[1]
         
@@ -129,10 +129,12 @@ class rubaliz:
             # Format handling
             #*******************
             
+            path = os.path.join(folder, fname)
+            
             if self.files_format in ['.txt', '.csv']:
-                down = pd.read_csv(folder + fname, sep  = self.sep, engine = 'python', header = 0) 
+                down = pd.read_csv(path, sep  = self.sep, engine = 'python', header = 0) 
             elif self.files_format == '.cnv':
-                down = fCNV(folder + fname).as_DataFrame()
+                down = fCNV(path).as_DataFrame()
             else:
                 raise ValueError('Please enter a valid file_format: .txt, .csv, .cnv')
                 
@@ -290,10 +292,10 @@ class rubaliz:
 
         '''
         
-        if not(os.path.isdir(self.root_folder)):
-            raise ValueError('The specified root directory does not exist (and should):' + self.root_folder)
-        if len(os.listdir(self.root_folder)) == 0:
-            raise ValueError('The specified root directory contain no files:' + self.root_folder)
+        if not(os.path.isdir(self.data_folder)):
+            raise ValueError('The specified root directory does not exist (and should):' + self.data_folder)
+        if len(os.listdir(self.data_folder)) == 0:
+            raise ValueError('The specified root directory contain no files:' + self.data_folder)
              
         if len(self.ub_range) != 2:
             raise ValueError('ub_range should have two values')
