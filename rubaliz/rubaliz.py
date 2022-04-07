@@ -10,8 +10,16 @@ import os
 import pandas as pd
 import numpy as np
 import ruptures as rpt
+
+# Small hack to avoid undesired logging messages from seabird
+import logging.config
 from seabird.cnv import fCNV
-from sklearn.preprocessing import StandardScaler
+
+logging.config.dictConfig({
+    'version': 1,
+    'disable_existing_loggers': True,
+})   
+
 
 class rubaliz:
     def __init__(self, info_dict):
@@ -28,7 +36,6 @@ class rubaliz:
         None.
 
         '''
-          
         #====================================
         # Deal with missing info 
         #====================================
@@ -54,6 +61,8 @@ class rubaliz:
         # Initialise the attributes
         #====================================
         
+        colnames = ['Fluorescence', 'Oxygen', 'Pot. temp.', 'Salinity', 'Density']
+
         self.ub_range = info_dict['ub_range'] # upper bound range
         self.lb_range = info_dict['lb_range'] # lower bound range
         self.cruise = info_dict['cruise_name'] 
@@ -62,13 +71,18 @@ class rubaliz:
         self.pres_col = info_dict['pres_col']
         
         self.cols = {}
-        for col in ['fluo_col', 'oxygen_col', 'temp_col', 'salinity_col', 'density_col']:
+        for col in colnames:
             self.cols[col] = info_dict[col]
         
         # Keep only the columns existing in the files 
         self.available_cols = [colname for col_alias, colname in self.cols.items()\
                                if colname != None]
             
+        self.available_aliases = [col_alias for col_alias, colname in self.cols.items()\
+                               if colname != None]
+        self.available_mask = [True if colname != None else False \
+                               for col_alias, colname in self.cols.items()]
+                        
         self.sep = info_dict['sep']
         self.files_format = info_dict['files_format']
         self.data_folder = info_dict['data_folder']
@@ -134,7 +148,7 @@ class rubaliz:
             if self.files_format in ['.txt', '.csv']:
                 down = pd.read_csv(path, sep  = self.sep, engine = 'python', header = 0) 
             elif self.files_format == '.cnv':
-                down = fCNV(path).as_DataFrame()
+                down = fCNV(path).as_DataFrame() 
             else:
                 raise ValueError('Please enter a valid file_format: .txt, .csv, .cnv')
                 
@@ -189,7 +203,6 @@ class rubaliz:
             raise RuntimeError(self.station + 'not taken into account: no valid signal.\
                                 Check the CTD files or the column names you have provided in info_dict')
 
-            #return pd.DataFrame([])
         
         if stacked_signals == False:
             return flc_signals
@@ -230,8 +243,10 @@ class rubaliz:
         # Data scaling
         #************************    
         
-        ss = StandardScaler()
-        s_data = ss.fit_transform(data)
+        
+        m = data.mean(axis = 0)
+        sd = data.std(axis = 0, ddof=0)
+        s_data = (data - m) / sd
         
         #************************
         # Rupture points
@@ -318,7 +333,7 @@ class rubaliz:
         self.info_check()
         
         #==================================
-        # Euphotic extraction
+        # Upper boundary extraction
         #==================================
     
         self.ub_data = self.format_data([0, self.ub_range[1]])        
@@ -329,7 +344,7 @@ class rubaliz:
         self.nb_ctd_ub = self.ub_data.shape[1] // len(self.available_cols)
                 
         #==================================
-        # Mesopelagic extraction
+        # Lower boundary extraction
         #==================================
 
         self.lb_data = self.format_data([eupho['Euphotic end'][0], self.lb_range[1]])

@@ -29,24 +29,25 @@ from rubaliz import rubaliz
 
 # Define CTD files info
 info_dict = {'cruise_name': 'DY032',
- 'station_name': 'PAP',
- 'ub_range': [280, 320],
- 'lb_range': [1000, 1300],
- 'pres_col': 'PRES',
- 'fluo_col': 'flC',
- 'oxygen_col': 'oxygen',
- 'temp_col': 'potemperature',
- 'density_col': 'sigma-\ufffd00',
- 'salinity_col': 'PSAL',             
- 'files_format': '.cnv',
- 'sep': None,
- 'data_folder': '<your_path_to_data>'}
+'station_name': 'PAP',
+'ub_range': [280, 320],
+'lb_range': [1000, 1300],
+'pres_col': 'PRES',
+'Fluorescence': 'flC',
+'Oxygen': 'oxygen',
+'Pot. temp.': 'potemperature',
+'Salinity': 'PSAL',   
+'Density': 'sigma-\ufffd00',
+'files_format': '.cnv',
+'sep': None,
+'data_folder': '<your_path_to_data>'}
 ```
 
 The cruise and station names are optional.
 The maximum depth ranges to look for the upper bound and lower boundaries of the active mesopelagic zone, ub_range and lb_range, are set to [280, 320] and [1000, 1300] by default, respectively.
 The pres_col is the name of the column containing the pressure data in the CTD cast.
-Similarly, the fluo_col, oxygen_col, temp_col, density_col and salinity_col stand for the column names of the fluorescence, oxygen, potential temperature, density and salinity data, respectively.
+Similarly, the Fluorescence, Oxygen, Pot. temp., Salinity and Density stand for the column names of the fluorescence, oxygen, potential temperature, salinity data, and density, respectively.
+If one of these five signals is missing, please set it to None.
 RUBALIZ can handle '.cnv', '.txt' and '.csv' files. For '.csv' and '.txt' files a separator (sep) has to be set.
 The data_folder contains all the CTD casts for a given (cruise, station). An example of such a cast is given in the data folder.
 
