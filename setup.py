@@ -10,8 +10,7 @@ requirements = [
     'numpy>=1.17.1',
     'pandas>=1.0.3',
     'ruptures>=1.1.5',
-    'seabird>=0.11.5',
-    'scikit-learn>=0.22.1'
+    'seabird>=0.11.5'
 ]
 
 # Load the package's __version__.py module as a dictionary.
