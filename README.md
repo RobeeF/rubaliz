@@ -1,5 +1,26 @@
 # RUBALIZ
-![RUBALIZ_logo](RUBALIZ_logo.png)
+<div align="center">
+  <img src="RUBALIZ_logo.png" alt="RUBALIZ_logo"/>
+</div>
+
+<br/>
+
+<div align="center">
+  <!-- Python version -->
+  <a href="https://pypi.python.org/pypi/rubaliz">
+    <img src="https://img.shields.io/badge/python-3.7-blue.svg?style=for-the-badge" alt="PyPI version"/>
+  </a>
+  <!-- PyPi -->
+  <a href="https://pypi.python.org/pypi/rubaliz">
+    <img src="https://img.shields.io/pypi/v/rubaliz.svg?style=for-the-badge" alt="pypi" />
+  </a>
+  <!-- License -->
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="http://img.shields.io/:license-mit-ff69b4.svg?style=for-the-badge" alt="license"/>
+  </a>
+</div>
+
+<br/>
 
 RUBALIZ stands for RUpture-Based detection method for the Active mesopeLagIc Zone.
 It determines the active mesopelagic zone boundaries from CTD casts, using five variables:
