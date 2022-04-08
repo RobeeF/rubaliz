@@ -133,7 +133,7 @@ class rubaliz:
         files = [file for file in files if re.search(self.files_format, file)]
         
         if len(files) == 0:
-            raise RuntimeError('No files in the folder' + folder)
+            raise RuntimeError('No files in the folder ' + folder)
     
         flc_signals = []
     
@@ -242,10 +242,10 @@ class rubaliz:
         #************************
         # Data scaling
         #************************    
-        
-        
+          
         m = data.mean(axis = 0)
         sd = data.std(axis = 0, ddof=0)
+        sd = np.where(sd == 0, 1E-16, sd) # Numeric stability
         s_data = (data - m) / sd
         
         #************************
