@@ -14,6 +14,10 @@
   <a href="https://pypi.python.org/pypi/rubaliz">
     <img src="https://img.shields.io/pypi/v/rubaliz.svg?style=for-the-badge" alt="pypi" />
   </a>
+  <!-- Zenodo -->
+  <a href="https://doi.org/10.5281/zenodo.6425451">
+    <img src="https://zenodo.org/badge/doi/10.5281/zenodo.6425452.svg" alt="pypi" />
+  </a>
   <!-- License -->
   <a href="https://opensource.org/licenses/MIT">
     <img src="http://img.shields.io/:license-mit-ff69b4.svg?style=for-the-badge" alt="license"/>
