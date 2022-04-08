@@ -44,7 +44,7 @@ pip install rubaliz
 
 or alternatively using conda:
 ```python
-conda install rubaliz
+conda install -c robee rubaliz
 ```
 
 ## Getting started
