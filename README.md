@@ -1,6 +1,6 @@
 # RUBALIZ
 <div align="center">
-  <img src="images/RUBALIZ_logo.png" alt="RUBALIZ_logo"/>
+  <img src="images/RUBALIZ_logo.png" alt="RUBALIZ_logo" width=70%/>
 </div>
 
 <br/>
