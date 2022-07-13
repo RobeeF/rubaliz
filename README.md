@@ -111,7 +111,7 @@ print(ruba.nb_ctd_lb) # The number of ctd used for the lower boundary determinat
 ```
 
 <div align="center">
-  <img src="images/README_cmd1.png" alt="README_cmd1"/>
+  <img src="images/README_cmd1.PNG" alt="README_cmd1"/>
 </div>
 
 To graphically analyze the boundaries found:
