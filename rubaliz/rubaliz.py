@@ -170,19 +170,27 @@ class rubaliz:
             #*******************************************
 
             # If some columns do not exist: the file is regarded as corrupted
-            if not(np.all(pd.Series(self.available_cols).isin(down.columns))):
-                print('Some of the specified columns are missing', fname, 'is not considered')
+            missing_cols = [col for col in self.available_cols if not(col in down.columns)]
+
+            if len(missing_cols) > 0:
+                print('Some of the specified columns are missing: ' +\
+                      ', '.join(missing_cols) + ',\n so '+ fname + ' is not considered. ' +\
+                      'Please compare with existing name:', down.columns)
                 continue
 
             # Get the signals
             signal = down[self.available_cols]
 
             # If the signal is too short or constant: the file is regarded as corrupted
-            if (len(signal) < 3) | (len(signal) <= max_depth):
+            if (len(signal) < 3) | (signal.index.max() <= max_depth):
+                print(fname + ': depth too short: Not considered as ' +\
+                      str(signal.index.max()) + " (the CTD cast max. depth)" +\
+                      ' < ' + str(max_depth) + " (the depth range max. you specified).")
                 continue
 
             if ('fluo_col' in self.available_cols):
                 if (signal[self.cols['fluo_col']].loc[10:].std() < 1E-4):
+                    print('Constant Fluorescence signal:', fname, 'not considered')
                     continue
 
             # Store the signal
@@ -193,8 +201,10 @@ class rubaliz:
         #===========================================
 
         if len(flc_signals) == 0:
-            raise RuntimeError(self.station + ' not taken into account: no valid signal. ' +\
-                                'Check the CTD files or the column names you have provided in info_dict')
+            station_name = self.station if self.station != None else "Station"
+            raise RuntimeError(station_name + ' not taken into account: no valid signal. ' +\
+                                'Check the depth of the CTD files' +\
+                                ' or the column names you have provided in info_dict')
 
 
         if stacked_signals == False:
@@ -342,6 +352,7 @@ class rubaliz:
         #==================================
         # Lower boundary extraction
         #==================================
+        
         rounded_upper = int(np.ceil(upper['Upper boundary'][0]))
         self.lb_data = self.format_data([rounded_upper, self.lb_range[1]])
         lower = self.rupture_confidence_interval(self.lb_data, 1, [self.lb_range[0], self.lb_range[1]])
