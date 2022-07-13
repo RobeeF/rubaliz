@@ -105,7 +105,7 @@ ruba.fit() # Adjust the mode
 
 Then the results are accessible in this way:
 ```python
-print(ruba.boundaries) # Upper and lower boundaries estimates and SDs.
+print(ruba.boundaries) # Upper and lower boundaries estimates and standard deviations.
 print(ruba.nb_ctd_ub) # The number of ctd used for the upper boundary determination
 print(ruba.nb_ctd_lb) # The number of ctd used for the lower boundary determination
 ```
@@ -113,6 +113,8 @@ print(ruba.nb_ctd_lb) # The number of ctd used for the lower boundary determinat
 <div align="center">
   <img src="images/README_cmd1.PNG" alt="README_cmd1"/>
 </div>
+
+As we are using the example file given in the data_folder, there is only one CTD cast to determine the upper and lower boundaries.
 
 To graphically analyze the boundaries found:
 ```python
