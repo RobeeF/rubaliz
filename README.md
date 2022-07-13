@@ -141,5 +141,5 @@ print(upper_bound)
 ```
 
 <div align="center">
-  <img src="images/README_cmd4.png" alt="README_cmd4"/>
+  <img src="images/README_cmd4.PNG" alt="README_cmd4"/>
 </div>
