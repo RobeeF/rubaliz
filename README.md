@@ -75,7 +75,7 @@ info_dict = {'cruise_name': 'DY032',
 'Oxygen': 'oxygen',
 'Pot. temp.': 'potemperature',
 'Salinity': 'PSAL',   
-'Density': 'sigma-é00',
+'Density': 'sigma-00',
 'files_format': '.cnv',
 'sep': None,
 'data_folder': 'your_path_to_data'}
@@ -95,7 +95,8 @@ Be careful on Windows machines, you will have to replace "\\" in the path with t
 RUBALIZ can handle '.cnv', '.txt' and '.csv' raw files (please do not use pre-processed files such as bodc-processed files).
 For '.csv' and '.txt' files, a separator (sep) has to be set (e.g. "," or ";" or "\s+" or "\t").
 CTD casts present a significant format variety and this package has tried to handle most of them.
-Yet, it might be the case that you need to pre-process your CTD casts a bit to make things work.
+Yet, it might be the case that you need to pre-process your CTD casts a bit to make things work. 
+Besides, please be careful to have the same column names in info_dict as in your raw files (many errors stem from the encoding of special characters).
 
 The model can be run in the following way in Spyder/via the console, etc.:
 ```python
