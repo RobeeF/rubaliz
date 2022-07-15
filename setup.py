@@ -9,7 +9,7 @@ requirements = [
     'numpy>=1.17.1',
     'pandas>=1.0.3',
     'ruptures>=1.1.5',
-    'matplotlib>=3.0.1'
+    'matplotlib>=3.4.0'
 ]
 
 # Load the package's __version__.py module as a dictionary.
