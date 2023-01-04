@@ -61,7 +61,7 @@ conda install -c robee rubaliz
 
 ## Getting started
 
-The first step is to get the variable names according to your specific CTD file format
+The first step is to get the variable names according to your specific CTD file format. If your file are in seabird format, comand to get names are as follow :
 
 ```python
 from seabird.cnv import fCNV
