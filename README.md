@@ -70,6 +70,7 @@ conda install -c robee rubaliz
 Note: If you are using Spyder to run your code, please change your running environment to rubaliz-env
 
 The first step is to get the variable names according to your specific CTD file format. If your files are in seabird format, please run the following commands to get the column names:
+
 ```python
 from seabird.cnv import fCNV
 profile = fCNV('C:/your_path_to_data')
@@ -105,7 +106,7 @@ If one of these five signals is missing, please set it to None.
 Please ensure that your files contain only CTD downward casts (no upward casts) to avoid potential unexpected behaviors.
 
 The data_folder contains all the CTD casts for a given (cruise, station) couple. An example of such a cast is given in the data folder.
-Be careful on Windows machines, you will have to replace "\\" in the path with the standard "/".
+Be careful on Windows machines, you may have to replace "\\" in the path with the standard "/".
 
 RUBALIZ can handle '.cnv', '.txt' and '.csv' raw files (please do not use pre-processed files such as bodc-processed files).
 For '.csv' and '.txt' files, a separator (sep) has to be set (e.g. "," or ";" or "\s+" or "\t").
