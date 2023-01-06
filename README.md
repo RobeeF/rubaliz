@@ -48,7 +48,14 @@ If you do not have python installed, the simplest is to install [Anaconda3](http
 </div>
 
 
-Then, open a command-line console (e.g. cmd, prompt, bash, etc.) and please copy-paste the corresponding line in it:
+Open a command-line console (e.g. cmd, prompt, bash, etc.), create and activate
+a new Python environment:
+```python
+conda create --name rubaliz-env python=3.7 # Activate an environment called rubaliz-env
+conda rubaliz-env extract # Activate your environment
+```
+
+Then, install the rubaliz package.
 Using pip:
 ```python
 pip install rubaliz
@@ -60,7 +67,15 @@ conda install -c robee rubaliz
 ```
 
 ## Getting started
-The metadata have to be filled in a dictionary as shown below:
+Note: If you are using Spyder to run your code, please change your running environment to rubaliz-env
+
+The first step is to get the variable names according to your specific CTD file format. If your files are in seabird format, please run the following commands to get the column names:
+```python
+from seabird.cnv import fCNV
+profile = fCNV('C:/your_path_to_data')
+profile.keys()
+```
+Then, using these variable names, the metadata have to be filled in a dictionary as shown below:
 
 ```python
 from rubaliz import rubaliz
@@ -146,3 +161,8 @@ print(upper_bound)
 <div align="center">
   <img src="images/README_cmd4.PNG" alt="README_cmd4"/>
 </div>
+
+
+## Current caveats
+- The package works for Python 3.7, support for newer version is for the moment not planned
+- In Spyder, do not forget to change your environment for the newly create "rubaliz-env" environment
