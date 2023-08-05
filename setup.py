@@ -6,9 +6,6 @@ with open("README.md", "r") as readme_file:
 
 REQUIRES_PYTHON = '>=3.7.0'
 requirements = [
-    'numpy>=1.17.1',
-    'pandas>=1.0.3',
-    'ruptures>=1.1.5',
     'matplotlib>=3.4.0'
 ]
 
