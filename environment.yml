@@ -1,0 +1,10 @@
+channels:
+  - conda-forge
+dependencies:
+  - pip=22.0.2
+  - python=3.10.6
+  - numpy=1.24.3
+  - pandas=1.5.3
+  - ruptures=1.1.7
+pip:
+  - .
